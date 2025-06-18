@@ -1,14 +1,27 @@
-import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
-import { Landing } from "../landing/landing";
+import { usePosts } from "../hooks/usePosts";
+import { PostCard } from "../components/PostCard";
+import type { Route } from "./+types/home"; 
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Photoblog - Home" },
+    { name: "description", content: "A feed of photos and their stories." },
   ];
 }
 
+
 export default function Home() {
-  return <Landing />;
+  const { posts, loading } = usePosts();
+
+  if (loading) {
+    return <p className="text-center mt-8">Loading...</p>;
+  }
+
+  return (
+    <div className="space-y-10 py-10">
+      {posts.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
+    </div>
+  );
 }
