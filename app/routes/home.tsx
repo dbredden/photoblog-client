@@ -9,7 +9,6 @@ export function meta() {
   ];
 }
 
-
 export default function Home() {
   const { posts, loading } = usePosts();
 
@@ -19,9 +18,11 @@ export default function Home() {
 
   return (
     <div className="space-y-10 py-10">
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
-    </div>
+      {[...posts]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+  </div>
   );
 }
