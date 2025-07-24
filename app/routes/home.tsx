@@ -4,8 +4,8 @@ import type { Route } from "./+types/home";
 
 export function meta() {
   return [
-    { title: "Photoblog - Home" },
-    { name: "description", content: "A feed of photos and their stories." },
+    { title: "Danny Redden" },
+    { name: "description", content: "Photography" },
   ];
 }
 
